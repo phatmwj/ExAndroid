@@ -4,13 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
-            name="a"
-            type="com.store.android.ui.profile.ProfileActivity" />
+            name="f"
+            type="com.store.android.ui.profilefragment.ProfileFragment" />
         <variable
             name="vm"
-            type="com.store.android.ui.profile.ProfileViewModel" />
+            type="com.store.android.ui.profilefragment.ProfileFragmentViewModel" />
         <import type="android.view.View" />
 
     </data>
@@ -51,6 +50,14 @@
                 android:layout_below="@id/textView"
                 android:layout_centerHorizontal="true"
                 android:text="@{vm.name}" />
+
         </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcPermission"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{vm.permissionListLiveData}"
+            tools:listitem="@layout/item_permission" />
     </LinearLayout>
 </layout>

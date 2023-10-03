@@ -10,9 +10,9 @@ import com.store.android.ViewModelProviderFactory;
 import com.store.android.data.Repository;
 import com.store.android.di.scope.ActivityScope;
 import com.store.android.ui.base.activity.BaseActivity;
+import com.store.android.ui.home.HomeViewModel;
 import com.store.android.ui.login.LoginViewModel;
 import com.store.android.ui.main.MainViewModel;
-import com.store.android.ui.profile.ProfileViewModel;
 import com.store.android.utils.GetInfo;
 
 import javax.inject.Named;
@@ -62,9 +62,9 @@ public class ActivityModule {
 
     @Provides
     @ActivityScope
-    ProfileViewModel provideProfileViewModel(Repository repository, Context application) {
-        Supplier<ProfileViewModel> supplier = () -> new ProfileViewModel(repository, (MVVMApplication) application);
-        ViewModelProviderFactory<ProfileViewModel> factory = new ViewModelProviderFactory<>(ProfileViewModel.class, supplier);
-        return new ViewModelProvider(activity, factory).get(ProfileViewModel.class);
+    HomeViewModel provideHomeViewModel(Repository repository, Context application) {
+        Supplier<HomeViewModel> supplier = () -> new HomeViewModel(repository, (MVVMApplication) application);
+        ViewModelProviderFactory<HomeViewModel> factory = new ViewModelProviderFactory<>(HomeViewModel.class, supplier);
+        return new ViewModelProvider(activity, factory).get(HomeViewModel.class);
     }
 }

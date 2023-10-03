@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/search"
+        android:title="Tìm kiếm"
+        android:icon="@drawable/ic_action_search"
+        />
+    <item
+        android:id="@+id/shopping"
+        android:title="Mua hàng"
+        android:icon="@drawable/ic_action_shopping_bag"/>
+
+    <item
+        android:id="@+id/favorite"
+        android:title="Yêu thích"
+        android:icon="@drawable/ic_action_favorite"/>
+
+    <item
+        android:id="@+id/account"
+        android:title="Tài khoản"
+        android:icon="@drawable/ic_action_account"/>
+</menu>

@@ -11,7 +11,8 @@ import com.store.android.di.component.ActivityComponent;
 import com.store.android.ui.base.activity.BaseActivity;
 
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
+implements MainCalback{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // lay ssid tu share ref
@@ -41,5 +42,20 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public void performDependencyInjection(ActivityComponent buildComponent) {
         buildComponent.inject(this);
+    }
+
+    @Override
+    public void doError(Throwable error) {
+
+    }
+
+    @Override
+    public void doSuccess() {
+
+    }
+
+    @Override
+    public void doFail() {
+
     }
 }

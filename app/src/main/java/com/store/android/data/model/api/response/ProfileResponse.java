@@ -10,4 +10,5 @@ public class ProfileResponse {
     private String avatar;
     private String phone;
     private String username;
+    private Group group;
 }

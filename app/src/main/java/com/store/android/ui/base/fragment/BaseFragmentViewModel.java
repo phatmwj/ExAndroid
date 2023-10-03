@@ -8,6 +8,7 @@ import com.store.android.MVVMApplication;
 import com.store.android.data.Repository;
 import com.store.android.data.model.other.ToastMessage;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import lombok.Setter;
 
 public class BaseFragmentViewModel extends ViewModel {
@@ -17,13 +18,22 @@ public class BaseFragmentViewModel extends ViewModel {
     protected final MutableLiveData<ToastMessage> mErrorMessage = new MutableLiveData<>();
     protected final ObservableBoolean mIsLoading = new ObservableBoolean();
 
+    public CompositeDisposable compositeDisposable;
+
 
     @Setter
     protected String token;
 
+    @Override
+    protected void onCleared() {
+        compositeDisposable.dispose();
+        super.onCleared();
+    }
+
     public BaseFragmentViewModel(Repository repository, MVVMApplication application) {
         this.repository = repository;
         this.application = application;
+        this.compositeDisposable = new CompositeDisposable();
     }
 
     public void showSuccessMessage(String message) {
@@ -49,4 +59,8 @@ public class BaseFragmentViewModel extends ViewModel {
     public void hideLoading() {
         mIsLoading.set(false);
     }
+
+//    public SchedulerProvider getSchedulerProvider() {
+//        return mSchedulerProvider;
+//    }
 }

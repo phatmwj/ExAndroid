@@ -14,6 +14,7 @@ import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
+import com.store.android.BR;
 import com.store.android.MVVMApplication;
 import com.store.android.R;
 import com.store.android.di.component.DaggerFragmentComponent;
@@ -40,6 +41,7 @@ public abstract class BaseFragment<B extends ViewDataBinding, V extends BaseFrag
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         performDependencyInjection(getBuildComponent());
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
+        binding.setLifecycleOwner(this);
         binding.setVariable(getBindingVariable(), viewModel);
         performDataBinding();
         viewModel.setToken(token);
@@ -73,7 +75,6 @@ public abstract class BaseFragment<B extends ViewDataBinding, V extends BaseFrag
     protected abstract int getLayoutId();
 
     protected abstract void performDataBinding();
-
     protected abstract void performDependencyInjection(FragmentComponent buildComponent);
 
     private FragmentComponent getBuildComponent() {
@@ -97,6 +98,19 @@ public abstract class BaseFragment<B extends ViewDataBinding, V extends BaseFrag
             progressDialog.dismiss();
             progressDialog = null;
         }
+    }
+    public B getViewDataBinding(){
+        return binding;
+    }
+
+    public V getViewModel(){
+        return viewModel;
+    }
+    public interface Callback {
+
+        void onFragmentAttached();
+
+        void onFragmentDetached(String tag);
     }
 
 }
